@@ -1,2 +1,29 @@
-<h1>Books#show</h1>
-<p>Find me in app/views/books/show.html.erb</p>
+<p id="notice"><%= notice %></p>
+<div class="container px-5 px-sm-0">
+  <div class="row">
+    <!--左側-->
+    <%= render 'books/user_info', book: @book, info_name: @book.user.name, info_intro: @book.user.introduction %>
+    <!--右側-->
+    <div class="col-md-8 offset-md-1">
+      <h2>Book detail</h2>
+      <table class="table">
+        <tbody>
+          <tr>
+            <td>
+                <%= link_to image_tag("default-image.jpg"), user_path(@book.user_id), size: '80x80' %></br>
+                <%= link_to @book.user.name, user_path(@book.user_id) %>
+            </td>
+            <td><%= link_to @book.title, book_path(@book.id) %></td>
+            <td><%= @book.body %></td>
+            <td>
+              <%= link_to 'Edit', edit_user_path(current_user.id), class: 'btn btn-sm btn-success' %>
+            </td>
+            <td>
+              <%= link_to "Destroy", book_path, method: :delete, class: 'btn btn-sm btn-danger' %>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

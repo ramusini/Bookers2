@@ -1,2 +1,23 @@
-<h1>Users#edit</h1>
-<p>Find me in app/views/users/edit.html.erb</p>
+<p id="notice"><% notice %></p>
+<div class="container">
+  <div class="row">
+    <div class="col-sm-12 col-md-8 col-lg-5 px-5 px-sm-0 mx-auto">
+      <h2>User info</h2>
+      <%= form_with model: @user do |f| %>
+      <div class="form-group">
+          <%= f.label :name %>
+          <%= f.text_field :name, class: "form-control" %>
+      </div>
+      <div class="form-group">
+          <%= f.label :body, "introduction" %>
+          <%= f.text_area :introduction, class: "form-control" %>
+      </div>
+      <div class="submit">
+        <%= f.submit 'Update user' %>
+      </div>
+      <% end %>
+    </div>
+  </div>
+</div>
+
+
