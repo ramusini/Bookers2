@@ -12,11 +12,7 @@
         <tbody>
           <tr>
             <td>
-              <% if @book.user.profile_image.attached? %>
-                <a href="/users/<%= @book.user_id %>"><%= image_tag @book.user.profile_image, size: '100x100' %></a></br>
-              <% else %>
-                <a href="/users/<%= @book.user_id %>"><%= image_tag "default-image.jpg", size: '100x100' %></a></br>
-              <% end %>
+              <%= link_to image_tag(@book.user.get_profile_image(100,100)), user_path(@book.user_id) %></br>
               <%= link_to @book.user.name, user_path(@book.user_id) %>
             </td>
             <td><%= link_to @book.title, book_path(@book.id) %></td>
