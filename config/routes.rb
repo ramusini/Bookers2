@@ -3,6 +3,6 @@ Rails.application.routes.draw do
   resources :books, only: [:index, :show, :edit, :create, :destroy, :update]
   resources :users, only: [:index, :show, :edit, :update]
   root to: "homes#top"
-  get '/homes/about' => 'homes#about', as: 'about'
+  get '/home/about' => 'homes#about', as: 'about'
   #『/users/~』のroutesとpathの
 end
