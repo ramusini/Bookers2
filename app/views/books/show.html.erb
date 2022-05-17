@@ -1,8 +1,10 @@
 <p id="notice"><%= notice %></p>
 <div class="container px-5 px-sm-0">
+  <!--エラー表示-->
+  <%= render 'error_messages', model: @new_book %>
   <div class="row">
     <!--左側-->
-    <%= render 'books/user_info', user: current_user, book: @new_book, info_name: @book.user.name, info_intro: @book.user.introduction %>
+    <%= render 'books/user_info', user: @user, book: @new_book, info_name: @book.user.name, info_intro: @book.user.introduction %>
     <!--右側-->
     <div class="col-md-8 offset-md-1">
       <h2>Book detail</h2>
@@ -10,16 +12,25 @@
         <tbody>
           <tr>
             <td>
-                <%= link_to image_tag("default-image.jpg"), user_path(@book.user_id), size: '80x80' %></br>
-                <%= link_to @book.user.name, user_path(@book.user_id) %>
+              <!--image_tag @book.user.get_profile_image(100,100)　こっちにしたい-->
+              <% if @book.user.profile_image.attached? %>
+                <%= link_to image_tag(@book.user.profile_image), user_path(@book.user_id), size: '100x100' %></br>
+              <% else %>
+                <%= link_to image_tag("default-image.jpg"), user_path(@book.user_id), size: '100x100' %></br>
+              <% end %>
+              <%= link_to @book.user.name, user_path(@book.user_id) %>
             </td>
             <td><%= link_to @book.title, book_path(@book.id) %></td>
             <td><%= @book.body %></td>
             <td>
-              <%= link_to 'Edit', edit_book_path(@book.id), class: 'btn btn-sm btn-success' %>
+              <% if @book.user_id == current_user.id %>
+                <%= link_to 'Edit', edit_book_path(@book.id), class: 'btn btn-sm btn-success' %>
+              <% end %>
             </td>
             <td>
-              <%= link_to "Destroy", book_path, method: :delete, class: 'btn btn-sm btn-danger' %>
+              <% if @book.user == current_user %>
+                <%= link_to "Destroy", book_path, method: :delete, class: 'btn btn-sm btn-danger' %>
+              <% end %>
             </td>
           </tr>
         </tbody>

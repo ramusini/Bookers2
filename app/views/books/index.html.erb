@@ -1,21 +1,9 @@
 <p id="notice"><%= notice %></p>
 <div class="container px-5 px-sm-0">
+  <!--エラー表示-->
+  <%= render 'error_messages', model: @new_book %>
   <div class="row">
     <!--左側-->
-    <% if @new_book.errors.any? %>
-      <div class = "error_explanation">
-        <h2 class = "error_message_box">
-          <%= @new_book.errors.count %> error prohibited this book from being saved:
-        </h2>
-        <div class = "error_message">
-          <ul>
-            <% @new_book.errors.full_messages.each do |message| %>
-            <li><%= message %></li>
-            <% end %>
-          </ul>
-        </div>
-      </div>
-    <%end%>
     <%= render 'user_info', user: current_user, book: @new_book, info_name: current_user.name, info_intro: current_user.introduction %><!--テンプレ呼び出し-->
     <!--右側-->
     <div class="col-md-8 offset-md-1">

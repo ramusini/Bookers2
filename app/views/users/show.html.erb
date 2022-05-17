@@ -1,5 +1,7 @@
 <p id="notice"><%= notice %></p>
 <div class="container px-5 px-sm-0">
+  <!--エラー表示-->
+  <%= render 'books/error_messages', model: @new_book %>
   <div class="row">
     <!--左側-->
     <%= render 'books/user_info', user: @user, book: @new_book, info_name: @user.name, info_intro: @user.introduction %>
